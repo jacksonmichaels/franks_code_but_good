@@ -111,6 +111,7 @@ CREATE TABLE IF NOT EXISTS ClientComments (
   cid INT NOT NULL,
   comm_id INT NOT NULL auto_increment,
   comments VARCHAR(255) NOT NULL,
+  INDEX(comm_id),
   PRIMARY KEY (cid,comm_id),
   CONSTRAINT fk_ClientComments_Client1
     FOREIGN KEY (cid)

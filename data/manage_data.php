@@ -92,15 +92,9 @@ echo"
 <form name='process' action='../data/select_output.php' method='post'>
 <div id='all_st'>
 	Select A State:
-	<select name='data'>
-      <option value=''>Choose One</option>";
-		while($row = mysqli_fetch_assoc($result3))
-			{
-				echo"<option value='".$row['cst']."'>".
-				$row['cst']."</option>";
-			}
+	";
+	mysql_selector($result3, 'cst', 'cst');
     echo"
-    </select>
 	<p>
 		<input type='hidden' value='3' name='query_id'/>
 		<input type='submit' value='Select Data' name='s' />
@@ -121,6 +115,19 @@ echo"
 </td>
 </tr>
 </table>";
+
+function mysql_selector($mysql_result, $id_key, $name_key){
+	echo"
+	<select name='data' required>
+	<option value=''>Choose One</option>";
+	  while($row = mysqli_fetch_assoc($mysql_result))
+		  {
+			  echo"<option value='".$row[$id_key]."'>".
+			  $row[$name_key]."</option>";
+		  }
+  echo"
+  </select>";
+}
 
 //End home page content here
 include("../include/footer.inc");
