@@ -2,6 +2,13 @@
 	This JavaScript file will control the operations of the menu system
 */
 
+const allDept = document.getElementById('all_dept');
+const allOps = document.getElementById('all_ops');
+const allSt = document.getElementById('all_st');
+const allZip = document.getElementById('all_zip');
+
+const all = [allDept, allOps, allSt, allZip];
+
 function showMenu(a,b){
 	var m = document.getElementById(a).style;
 	var x = document.getElementById(b).style;
@@ -16,63 +23,15 @@ function showMenu(a,b){
 	}
 }
 
-function showNavMenu(){
-	var nav = document.getElementById('nav_menu').style;
-	if(nav.display == "block")
-	{
-		nav.display = "none";
-	}
-	else
-	{
-		nav.display = "block";
-	}
-}
-
-function showSubMenu(){
-	var nav = document.getElementById('menu1a').style;
-	if(nav.display == "block")
-	{
-		nav.display = "none";
-	}
-	else
-	{
-		nav.display = "block";
-	}
-}
-
 function showQuery(a){
-	var menu = new Array('all_dept','all_ops','all_st','all_zip');
-	for (i=0;i<menu.length;i++)
-	{
-		if(menu[i] == a)
-		{
-			var x = document.getElementById(a).style;
-			x.display = "block";
-			
+	all.forEach(element => {
+		if (element.id === a){
+			element.style.display = "block";
 		}
-		else
-		{
-			var y = document.getElementById(menu[i]).style;
-			y.display = "none";
+		else {
+			element.style.display = "none";
+
 		}
-	}
+	})
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

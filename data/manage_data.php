@@ -10,22 +10,33 @@ $result2=mysqli_query($link,$sql2);
 $sql3="select distinct cst from address order by cst";
 $result3=mysqli_query($link,$sql3);
 
+function mysql_selector($mysql_result, $id_key, $name_key){
+	echo"
+	<select name='data' required>
+	<option value=''>Choose One</option>";
+	  while($row = mysqli_fetch_assoc($mysql_result))
+		  {
+			  echo"<option value='".$row[$id_key]."'>".
+			  $row[$name_key]."</option>";
+		  }
+  echo"
+  </select>";
+}
 
-include("../include/header_1.inc");
-echo "<title>Data Management Portal</title>
-	  <script type='text/javascript' src='../common/menu.js'></script>";
-include("../include/header_2.inc");
-//Start home page content here
-echo"
+?>
+
+<?php include("../include/header_1.inc"); ?>
+<title>Data Management Portal</title>
+<script defer type='text/javascript' src='../common/menu.js'></script>
+<?php include("../include/header_2.inc"); ?>
 
 <table>
 	<tr>
 		<td id='banner'>
 			<h1>Welcome to the Client Data Portal</h1>
 		</td>
-	</tr>";
-	include("../include/navbar.inc");
-	echo"
+	</tr>
+	<?php include("../include/navbar.inc"); ?>
 	<tr>
 		<td>
 	<div id='process_menu'>
@@ -54,15 +65,7 @@ echo"
 <form name='process' action='../data/select_output.php' method='post'>
 <div id='all_dept'>
 	Select A Department:
-	<select name='data'>
-      <option value=''>Choose One</option>";
-		while($row = mysqli_fetch_assoc($result1))
-			{
-				echo"<option value='".$row['dept_id']."'>".
-				$row['dept_name']."</option>";
-			}
-    echo" 
-    </select>
+		<?php mysql_selector($result1, 'dept_id', 'dept_name'); ?>
 	<p>
 		<input type='hidden' value='1' name='query_id'/>
 		<input type='submit' value='Select Data' name='s' />
@@ -73,15 +76,7 @@ echo"
 <form name='process' action='../data/select_output.php' method='post'>
 <div id='all_ops'>
 	Select An Operating System:
-	<select name='data'>
-      <option value=''>Choose One</option>";
-		while($row = mysqli_fetch_assoc($result2))
-			{
-				echo"<option value='".$row['soft_id']."'>".
-				$row['soft_name']."</option>";
-			}
-    echo"  
-    </select>
+		<?php mysql_selector($result2,'soft_id', 'soft_name'); ?>
 	<p>
 		<input type='hidden' value='2' name='query_id'/>
 		<input type='submit' value='Select Data' name='s' />
@@ -92,9 +87,7 @@ echo"
 <form name='process' action='../data/select_output.php' method='post'>
 <div id='all_st'>
 	Select A State:
-	";
-	mysql_selector($result3, 'cst', 'cst');
-    echo"
+	<?php mysql_selector($result3, 'cst', 'cst'); ?>
 	<p>
 		<input type='hidden' value='3' name='query_id'/>
 		<input type='submit' value='Select Data' name='s' />
@@ -114,21 +107,7 @@ echo"
 </form>
 </td>
 </tr>
-</table>";
+</table>
 
-function mysql_selector($mysql_result, $id_key, $name_key){
-	echo"
-	<select name='data' required>
-	<option value=''>Choose One</option>";
-	  while($row = mysqli_fetch_assoc($mysql_result))
-		  {
-			  echo"<option value='".$row[$id_key]."'>".
-			  $row[$name_key]."</option>";
-		  }
-  echo"
-  </select>";
-}
 
-//End home page content here
-include("../include/footer.inc");
-?>
+<?php include("../include/footer.inc");?>
