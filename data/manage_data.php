@@ -23,10 +23,10 @@ function mysql_selector($mysql_result, $id_key, $name_key){
   </select>";
 }
 
-function mysql_div_list($mysql_result, $id_key, $name_key){
+function mysql_div_list($mysql_result, $id_key, $name_key, $url){
 	while($row = mysqli_fetch_assoc($mysql_result))
 	{
-		echo"<div onClick=getData('/api/department.php',".$row[$id_key].")>".
+		echo"<div onClick=getData('".$url."',".$row[$id_key].")>".
 		$row[$name_key]." </div>";
 	}
 }
@@ -52,20 +52,20 @@ function mysql_div_list($mysql_result, $id_key, $name_key){
 		<div id="all_dept_div" onclick=showQuery('all_dept') >
 			<div>Department</div>
 			<?php
-				mysql_div_list($result1, 'dept_id', 'dept_name');
+				mysql_div_list($result1, 'dept_id', 'dept_name', '/api/department.php');
 			?>
 		</div>
 		<div id='app_soft_div' >
 			Application Software
-			<?php mysql_div_list($result2,'soft_id', 'soft_name'); ?>
+			
 		</div>
 		<div id="all_ops_div" onclick=showQuery('all_ops')>
 			Operating System
-			
+			<?php mysql_div_list($result2,'soft_id', 'soft_name','/api/operating.php'); ?>
 		</div>
 		<div id="all_st_div" onclick=showQuery('all_st')>
 			Residency: By State
-			<?php mysql_div_list($result3, 'cst', 'cst'); ?>
+			<?php mysql_div_list($result3, 'cst', 'cst', ''); ?>
 		</div>
 		<div id="all_zip_div" onclick=showQuery('all_zip')>
 			Residency: By Zip Code
