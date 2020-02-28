@@ -5,14 +5,14 @@ global $link;
 $query = "select cfn,cln,dept_name from corpclient,department 
 	where department.dept_id=corpclient.dept_id 
     and corpclient.dept_id=".(int)$data;
-$results = array();
-$result = mysqli_query($link,$query);
-
-while($row = $result->fetch_array(MYSQLI_ASSOC)){
-    $results[] = $row;
-}
-
-echo json_encode(($results));
+	$results = array();
+	$result = mysqli_query($link,$query);
+	
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+		$results[] = $row;
+	}
+	
+	echo json_encode(($results));
 /*
 	$row = mysqli_fetch_array($result1);
 	echo"<table><tr><td>Department:{$row['dept_name']}</td></tr>

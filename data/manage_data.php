@@ -57,17 +57,21 @@ function mysql_div_list($mysql_result, $id_key, $name_key){
 		</div>
 		<div id='app_soft_div' >
 			Application Software
+			<?php mysql_div_list($result2,'soft_id', 'soft_name'); ?>
 		</div>
 		<div id="all_ops_div" onclick=showQuery('all_ops')>
 			Operating System
+			
 		</div>
 		<div id="all_st_div" onclick=showQuery('all_st')>
 			Residency: By State
+			<?php mysql_div_list($result3, 'cst', 'cst'); ?>
 		</div>
 		<div id="all_zip_div" onclick=showQuery('all_zip')>
 			Residency: By Zip Code
+			<input name='data' size='5' maxlength='5'/>
 		</div>
-		<span>Select a Process:</span>
+		<!--<span>Select a Process:</span>
 			<span class='radio'>
 				<input type='radio' name='p' value='d' onclick=showQuery('all_dept') />
 				Department
@@ -86,7 +90,7 @@ function mysql_div_list($mysql_result, $id_key, $name_key){
 			<span class='radio'>
 				<input type='radio' name='p' value='d' onclick=showQuery('all_zip') />
 				Residency: By Zip Code
-			</span>
+			</span>-->
 	</div>
 	<div id="data"></div>
 	<form id="manage_form" name='process' action='../data/select_output.php' method='post'>
@@ -116,7 +120,7 @@ function mysql_div_list($mysql_result, $id_key, $name_key){
 <form name='process' action='../data/select_output.php' method='post'>
 <div id='all_st'>
 	Select A State:
-	<?php mysql_selector($result3, 'cst', 'cst'); ?>
+	
 	<p>
 		<input type='hidden' value='3' name='query_id'/>
 		<input type='submit' value='Select Data' name='s' />
