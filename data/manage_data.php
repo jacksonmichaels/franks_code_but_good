@@ -23,6 +23,14 @@ function mysql_selector($mysql_result, $id_key, $name_key){
   </select>";
 }
 
+function mysql_div_list($mysql_result, $id_key, $name_key){
+	while($row = mysqli_fetch_assoc($mysql_result))
+	{
+		echo"<div onClick=getData('/api/department.php',".$row[$id_key].")>".
+		$row[$name_key]." </div>";
+	}
+}
+
 ?>
 
 <?php include("../include/header_1.inc"); ?>
@@ -40,6 +48,25 @@ function mysql_selector($mysql_result, $id_key, $name_key){
 	<tr>
 		<td>
 	<div id='process_menu'>
+		<span>Select a Process:</span>
+		<div id="all_dept_div" onclick=showQuery('all_dept') >
+			<div>Department</div>
+			<?php
+				mysql_div_list($result1, 'dept_id', 'dept_name');
+			?>
+		</div>
+		<div id='app_soft_div' >
+			Application Software
+		</div>
+		<div id="all_ops_div" onclick=showQuery('all_ops')>
+			Operating System
+		</div>
+		<div id="all_st_div" onclick=showQuery('all_st')>
+			Residency: By State
+		</div>
+		<div id="all_zip_div" onclick=showQuery('all_zip')>
+			Residency: By Zip Code
+		</div>
 		<span>Select a Process:</span>
 			<span class='radio'>
 				<input type='radio' name='p' value='d' onclick=showQuery('all_dept') />
@@ -61,8 +88,10 @@ function mysql_selector($mysql_result, $id_key, $name_key){
 				Residency: By Zip Code
 			</span>
 	</div>
-
-<form name='process' action='../data/select_output.php' method='post'>
+	<div id="data"></div>
+	<form id="manage_form" name='process' action='../data/select_output.php' method='post'>
+	</form>
+<!--<form name='process' action='../data/select_output.php' method='post'>
 <div id='all_dept'>
 	Select A Department:
 		<?php mysql_selector($result1, 'dept_id', 'dept_name'); ?>
@@ -104,7 +133,7 @@ function mysql_selector($mysql_result, $id_key, $name_key){
 		<input type='submit' value='Select Data' name='s' />
 	</p>
 </div>
-</form>
+</form>-->
 </td>
 </tr>
 </table>
