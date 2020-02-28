@@ -46,7 +46,7 @@ function mysql_div_list($mysql_result, $id_key, $name_key, $url){
 	</tr>
 	<?php include("../include/navbar.inc"); ?>
 	<tr>
-		<td>
+	<td>
 	<div id='process_menu'>
 		<span>Select a Process:</span>
 		<div>
