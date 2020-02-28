@@ -2,12 +2,23 @@
 	This JavaScript file will control the operations of the menu system
 */
 
+const allDeptDiv = document.getElementById('all_dept_div');
+const allOpsDiv = document.getElementById('all_ops_div');
+const allStDiv = document.getElementById('all_st_div');
+const allZipDiv = document.getElementById('all_zip_div');
+
+const allDiv = [allDeptDiv, allOpsDiv, allStDiv, allZipDiv];
+
+
+allDiv.forEach(div => {
+	div.style.display = "none";
+})
+
+
 const allDept = document.getElementById('all_dept');
 const allOps = document.getElementById('all_ops');
 const allSt = document.getElementById('all_st');
 const allZip = document.getElementById('all_zip');
-
-const manageForm = document.getElementById('manage_form');
 
 const all = [allDept, allOps, allSt, allZip];
 
@@ -26,7 +37,7 @@ function showMenu(a,b){
 }
 
 function showQuery(a){
-	all.forEach(element => {
+	allDiv.forEach(element => {
 		if (element.id === a){
 			element.style.display = "block";
 		}
@@ -50,7 +61,6 @@ const getData = async (url, data) => {
 	const dataDiv = document.getElementById('data');
 	dataDiv.innerHTML = `
 	<table>
-	<tr><td>${json[0].dept_name}</td></tr>
 	<tr><td>First Name</td><td>Last Name</td></tr>
 	${json.reduce((acc, cur) => acc + `
 		<tr>

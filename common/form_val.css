@@ -97,10 +97,7 @@ table
 #all_dept, #all_ops, #all_st, #all_zip
 {
 	position: relative;
-	top:15%;
-	left:30%;
 	color:#ffffff;
-	display:none;
 }
 
 #banner

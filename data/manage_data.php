@@ -49,27 +49,34 @@ function mysql_div_list($mysql_result, $id_key, $name_key, $url){
 		<td>
 	<div id='process_menu'>
 		<span>Select a Process:</span>
-		<div id="all_dept_div" onclick=showQuery('all_dept') >
-			<div>Department</div>
+		<div>
+			<h3 id="all_dept" onclick="showQuery('all_dept_div')">Department</h3>
+			<div id="all_dept_div">
 			<?php
 				mysql_div_list($result1, 'dept_id', 'dept_name', '/api/department.php');
 			?>
+			</div>
 		</div>
-		<div id='app_soft_div' >
+		<h3 id='app_soft_div' >
 			Application Software
-			
+		</h3>
+		<div>
+			<h3 id="all_ops" onclick="showQuery('all_ops_div')">Operating System</h3>
+			<div id="all_ops_div" >
+				<?php mysql_div_list($result2,'soft_id', 'soft_name','/api/operating.php'); ?>
+			</div>
 		</div>
-		<div id="all_ops_div" onclick=showQuery('all_ops')>
-			Operating System
-			<?php mysql_div_list($result2,'soft_id', 'soft_name','/api/operating.php'); ?>
+		<div>
+			<h3 id="all_st" onclick="showQuery('all_st_div')">Residency: By State</h3>
+			<div id="all_st_div" >
+				<?php mysql_div_list($result3, 'cst', 'cst', ''); ?>
+			</div>
 		</div>
-		<div id="all_st_div" onclick=showQuery('all_st')>
-			Residency: By State
-			<?php mysql_div_list($result3, 'cst', 'cst', ''); ?>
-		</div>
-		<div id="all_zip_div" onclick=showQuery('all_zip')>
-			Residency: By Zip Code
-			<input name='data' size='5' maxlength='5'/>
+		<div>
+			<h3 id="all_zip" onclick="showQuery('all_zip_div')">Residency: By Zip Code</h3>
+			<div id="all_zip_div" >
+				<input name='data' size='5' maxlength='5'/>
+			</div>
 		</div>
 		<!--<span>Select a Process:</span>
 			<span class='radio'>
